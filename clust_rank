@@ -1,0 +1,20 @@
+fi = 'rank_out1.txt'
+fo = 'rank_add_out.csv'
+add_dict ={}
+with open(fo, mode='w', encoding='gbk') as writer:
+	with open(fi, mode='r', encoding='gbk') as f:
+		
+		for line in f:
+			line_spli = line.strip().split()
+			if len(line_spli) == 0:
+				continue
+			#print(len(line_spli))
+			tissu = line_spli[2] + ' ' + line_spli[4]
+			#print(tissu)
+			if not tissu in add_dict:
+				add_dict[tissu] = int(line_spli[6])
+			else:
+				add_dict[tissu] += int(line_spli[6])
+	for k,v in add_dict.items():
+			writer.write(k + ' , ' + str(v) + '\n')
+
